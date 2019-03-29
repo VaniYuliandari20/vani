@@ -13,29 +13,38 @@
 
 Route::get('/', function () {
     return view('welcome');
-});	
-Route::get('welcome', function () {
+});
+
+Route::get('/welcome', function(){
 	echo "welcome";
 });
 
-route::get('/show/{id}', function ($id) {
-	echo "Nilai Parameter Adalah".$id;
+Route::get('/show/{id}', function ($id) {
+	echo "Nilai Parameter adalah ".$id;
 });
 
-route::get('/show/{id?}', function ($id=1) {
-	echo "Nilai Parameter Adalah".$id;
+Route::get('/show/{id?}', function ($id=1) {
+	echo "Nilai Parameter adalah " .$id;
 });
 
-route::get('/edit/{nama}', function ($nama) {
-	echo "Nilai Parameter Adalah".$nama;
+Route::get('/edit/{nama}', function ($nama) {
+	echo "Nilai Parameter adalah ".$nama;
 })->where('nama','[A-Za-z]+');
 
-route::get('/index', function (){
-	echo "<a href='".route('create')."'>Akses Route dengan nama </a>";
+Route::get('/index', function () {
+	echo "<a href='".route('create')."'>Akses Route dengan nama </a>";	
 });
 
-route::get('/create', function() {
+Route::get('/create', function () {
 	echo "route diakses menggunakan nama";
 })->name('create');
 
-route::get('/barangs', 'barangsController@index');
+Route::get('/barangs', 'barangsController@index');
+
+Route::get('/barangs/show', 'barangsController@show');
+
+Route::get('/halaman',function(){
+$title = 'Harry Pooter';
+$konten = 'harry potter and the deathly hallows: part 2';
+return view('konten.halaman',compact('title','konten'));
+});
